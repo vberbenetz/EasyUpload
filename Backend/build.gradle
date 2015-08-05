@@ -1,0 +1,53 @@
+group 'Backend'
+version '0.1.0'
+
+buildscript {
+    repositories {
+        maven { url "https://repo.spring.io/libs-release" }
+        mavenLocal()
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.2.2.RELEASE")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'spring-boot'
+
+jar {
+    baseName = 'EasyUpload'
+    version =  '0.1.0'
+    manifest {
+        attributes 'Main-Class': 'easyupload.EasyUploadApplication'
+    }
+}
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+    maven {
+        url "https://repo.spring.io/libs-release"
+    }
+}
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+    maven {
+        url "https://repo.spring.io/milestone"
+    }
+}
+
+dependencies {
+    compile("mysql:mysql-connector-java")
+    compile("commons-dbcp:commons-dbcp")
+    compile("org.springframework.boot:spring-boot-starter-data-jpa:1.2.5.RELEASE")
+    compile("org.springframework.boot:spring-boot-starter-web:1.3.0.M2")
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.2'
+}
+
